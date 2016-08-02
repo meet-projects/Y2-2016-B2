@@ -7,3 +7,20 @@ Base = declarative_base()
 
 #PLACE YOUR TABLE SETUP INFORMATION HERE
 
+class User(Base):
+	__tablename__ = 'user'
+	id = Column(Integer, primary_key = True)
+	fullname = Column(String)
+	email = Column(String)
+	password = Column(String)
+	picture = Column(String, nullable = False)
+	answer1 = Column(String, nullable = False)
+	answer2 = Column(String, nullable = False) 
+	answer3 = Column(String, nullable = False) 
+	answer4 = Column(String, nullable = False) 
+	answer5 = Column(String, nullable = False) 
+	answer6 = Column(String, nullable = False) 
+	answer7 = Column(String, nullable = False)
+	answer8 = Column(String, nullable = False)
+	answer9 = Column(String, nullable = False) 
+	answer10 = Column(String, nullable = False)    
