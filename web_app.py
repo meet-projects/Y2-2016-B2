@@ -17,13 +17,16 @@ session = DBSession()
 
 #YOUR WEB APP CODE GOES HERE
 
+
+
+
 @app.route('/')
-def main():
-    return render_template('main_page.html')
+def log_in():
+	return render_template('login.html')
 
-
-
-
+@app.route('/signup')
+def sign_up():
+	return render_template('signup.html')
 
 
 if __name__ == '__main__':

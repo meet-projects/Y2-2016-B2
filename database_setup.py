@@ -5,11 +5,11 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-class friends(Base):
-	__tablename__=friends
+class Friends(Base):
+	__tablename__='friends'
 	id=Column(Integer, primary_key=True)
-	person=Column('id', Integer, ForeignKey("user.id"))
-	friend=Column('id', Integer, ForeignKey("user.id"))
+	person=Column(Integer, ForeignKey("user.id"))
+	friend=Column(Integer, ForeignKey("user.id"))
 	
 
 class User(Base):
