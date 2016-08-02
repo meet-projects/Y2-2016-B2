@@ -5,5 +5,10 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-#PLACE YOUR TABLE SETUP INFORMATION HERE
+class friends(Base):
+	__tablename__=friends
+	id=Column(Integer, primary_key=True)
+	person=Column('id', Integer, ForeignKey("user.id"))
+	friend=Column('id', Integer, ForeignKey("user.id"))
+	
 

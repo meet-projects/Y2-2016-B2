@@ -10,4 +10,5 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-# You can add some starter data for your database here.
+
+
