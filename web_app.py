@@ -46,24 +46,43 @@ def sign_up():
 	return render_template('signup.html')
 
 
-@app.route('/suggest<int:user_id>')
-<<<<<<< HEAD
+@app.route('/suggest/<int:user_id>')
 def suggest_friends(user_id):
-	#user=session.query(Friends).filter_by(person=user_id).frist()
-	return render_template('suggest_friends.html')
+	'''
+	user=session.query(User).filter_by(id=user_id).first()
+	suggests=session.query(User).all()
+	for i in suggests:
+		if user.id!=i.id:
+			for 
+	'''
+	return render_template('suggest_friends.html', user=user)
 
 
-=======
-def suggest_friend(user_id):
-	session.query(Friend).filter_by(person=user_id).frist()
-	return redirect(url_for('suggest_friend',user_id = user.id))
-	
+
+@app.route('/profile/<int:user_id>')	
 def user_profile():
 	return render_template('user_profile.html')
-	return redirect(url_for('user_profile'))
+	
+@app.route('/questions/<int:user_id>', methods=['GET','POST'])	
+def questions(user_id):
+	user=session.query(User).filter_by(id=user_id).first()
+	if request.method == 'GET':
+		return render_template('questions.html', user=user )
+	else:
+		
+		Q= request.form.keys()
+		for i in Q:
+			answer=request.form[i]
+			setattr(user, i, answer)
+
+		session.commit()
+		return redirect(url_for('suggest_friends', user_id=user.id, ))
+
+
+	
+
 	
 	
->>>>>>> 0748f4a2efd7e94f21989f8ba22156e9a0be4c5c
 
 if __name__ == '__main__':
     app.run(debug=True)

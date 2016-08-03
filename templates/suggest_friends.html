@@ -15,19 +15,12 @@
 
 <table class="table table-hover" >
 <thead>
+<h1> Suggest Friends
   <tr>
     <th>Name</th>
-    
-    <th>status</th>
+    <th>Picture</th>
+    <th>Status</th>
   </tr>
 </thead>
 <tbody>
 
-{%for friend in friends%}
-  <tr>
-    <td>{{ friend.name }}</td>
-    <td>{{ friend.status }}</td>
-    <td>{{ friend.picture }}</td>
-    <td><a href="{{url_for('friend_profil', friend_id=friend.id)}}" class="btn btn-info" role="button">wiew</a></td>
-  </tr>
-  {%endfor%}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>answeruestions</title>
+	<!-- Latest compiled and minified CSS --> 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+	<!-- jansweruery library --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jansweruery/1.12.4/jansweruery.min.js"></script> 
+	<!-- Latest compiled JavaScript --> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
+<body>
+
+<div class="container">
+<form action="{{url_for('questions', user_id=user.id)}}" method="post" role="form">
+<div class="row">
+	<h1>answeruestions</h1>
+</div>
+<div class="row">
+<div class="col-md-6">
+<h2>-Superficial answeruestions:</h2>
+What's your age? 
+<input type="text" name="answer1">
+<br>
+Gender(male/female/other)? 
+<input type="text" name="answer2">
+<br>
+Do you have brothers or sisters?How many? 
+<input type="text" name="answer3">
+<br>
+What's your hobies? 
+<input type="text" name="answer4">
+<br>
+Where do you learn? 
+<input type="text" name="answer5">
+<br>
+What's your nationality
+<input type="text" name="answer6">
+<br>
+Where do you live? 
+<input type="text" name="answer7">
+<br>
+Favourite subject in school? 
+<input type="text" name="answer8">
+<br>
+ Favourite color? 
+<input type="text" name="answer9">
+<br>
+Favourite movie? 
+<input type="text" name="answer10">
+<br>
+Favourite food?
+<input type="text" name="answer11">
+<br>
+Do you have any pets? 
+<input type="text" name="answer12">
+<br>
+X-box or PlayStation? 
+<input type="text" name="answer13">
+<br>
+</div>
+
+<div class="col-md-6"><h2>-Deep answeruestions:</h2>
+Are you religious or spirituals?
+<input type="text" name="answer14">
+<br>
+Do you consider yourself an introvert or an extrovert? 
+<input type="text" name="answer15">
+<br>
+Are you open minded or not? 
+<input type="text" name="answer16">
+<br>
+Is what you're doing now what you always wanted to do growing up? 
+<input type="text" name="answer17">
+<br>
+Describe you're relashionship with your parents in one word? 
+<input type="text" name="answer18">
+<br>
+Describe the meaning of life in one word? 
+<input type="text" name="answer19">
+<br>
+What kind of parent do you think you will be? 
+<input type="text" name="answer20">
+<br>
+Are you a leader or a follower 
+<input type="text" name="answer21">
+<br>
+What type of friend are you? 
+<input type="text" name="answer22">
+<br>
+on scale of 1-10 how onest are you? 
+<input type="text" name="answer23">
+<br>
+What are 2 things that you cannot live without? 
+<input type="text" name="answer24">
+<br>
+Do you prefer giving or receiving 
+<input type="text" name="answer25">
+<br>
+Describe yourself in two words? 
+<input type="text" name="answer26">
+<br>
+<input type="submit" value="Finish">
+
+</div>
+</div>
+</div>
+</form>
+</body>
+</html>

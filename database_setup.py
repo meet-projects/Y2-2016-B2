@@ -5,12 +5,12 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-class Friends(Base):
-	__tablename__='friends'
-	id=Column(Integer, primary_key=True)
-	person=Column(Integer, ForeignKey("user.id"))
-	friend=Column(Integer, ForeignKey("user.id"))
-	
+friend_association = Table('association', Base.metadata,
+    Column('friend_1', Integer, ForeignKey('friends.id')),
+    Column('friend_2', Integer, ForeignKey('friends.id')))
+
+
+
 
 class User(Base):
 	__tablename__ = 'user'
@@ -20,13 +20,25 @@ class User(Base):
 	password = Column(String)
 	#status_=Column(String)
 	picture = Column(String, nullable = False)
-	answer1 = Column(String, nullable = False)
-	answer2 = Column(String, nullable = False) 
-	answer3 = Column(String, nullable = False) 
-	answer4 = Column(String, nullable = False) 
-	answer5 = Column(String, nullable = False) 
-	answer6 = Column(String, nullable = False) 
-	answer7 = Column(String, nullable = False)
-	answer8 = Column(String, nullable = False)
-	answer9 = Column(String, nullable = False) 
-	answer10 = Column(String, nullable = False)    
+	my_friends=relationship("User",secondary=friend_association)
+
+class Questions(Base):
+	__tablename__='questions'
+
+	id = Column(Integer, primary_key = True)
+	text=Column(String)
+	deep=Column(Boolean)
+	
+
+
+class User_questions(Base):
+	__tablename__='user_questions'
+	id = Column(Integer, primary_key = True)
+	user_id=Column(Integer, ForeignKey("user.id"))
+	question_id=Column(Integer, ForeignKey("questions.id"))
+	user_response=Column(String)
+
+
+  	
+   		   
+	    

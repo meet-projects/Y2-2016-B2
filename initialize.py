@@ -15,16 +15,14 @@ session = DBSession()
 Tehila = User(fullname="Tehila Pelled", 
 			  email="tehilapelled16@gmail.com", 
 			  password="password",
-			  picture="https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiq1Pr7wKLOAhUBvRQKHR0XBNIQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fexplore%2Fcute-dogs%2F&psig=AFQjCNFSpUH41w_oeORD9-R6D2h3YG0m0A&ust=1470219593279203",
-			 # status_="hiiiiiiiiiiiiiiiiii",
-			 answer1 = '',answer2='',answer3='',answer4='',answer5='',answer6='',answer7='',answer8='',answer9='',answer10='')
+			  picture="https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiq1Pr7wKLOAhUBvRQKHR0XBNIQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fexplore%2Fcute-dogs%2F&psig=AFQjCNFSpUH41w_oeORD9-R6D2h3YG0m0A&ust=1470219593279203"
+			 )
 
 Amos = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
-			  picture="https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiq1Pr7wKLOAhUBvRQKHR0XBNIQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fexplore%2Fcute-dogs%2F&psig=AFQjCNFSpUH41w_oeORD9-R6D2h3YG0m0A&ust=1470219593279203",
-			  #status_="hello hereeee",
-			  answer1='',answer2='',answer3='',answer4='',answer5='',answer6='',answer7='',answer8='', answer9='',answer10='')
+			  picture="https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiq1Pr7wKLOAhUBvRQKHR0XBNIQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fexplore%2Fcute-dogs%2F&psig=AFQjCNFSpUH41w_oeORD9-R6D2h3YG0m0A&ust=1470219593279203" 
+			  )
 
  
 
