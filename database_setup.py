@@ -18,6 +18,7 @@ class User(Base):
 	fullname = Column(String)
 	email = Column(String)
 	password = Column(String)
+	status_=Column(String)
 	picture = Column(String, nullable = False)
 	answer1 = Column(String, nullable = False)
 	answer2 = Column(String, nullable = False) 
