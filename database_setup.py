@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String, Table, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
@@ -6,9 +6,8 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 friend_association = Table('association', Base.metadata,
-    Column('friend_1', Integer, ForeignKey('friends.id')),
-    Column('friend_2', Integer, ForeignKey('friends.id')))
-
+    Column('user_id', Integer, ForeignKey('user.id')),
+    Column('friend_id', Integer, ForeignKey('user.id')))
 
 
 
@@ -18,9 +17,13 @@ class User(Base):
 	fullname = Column(String)
 	email = Column(String)
 	password = Column(String)
-	#status_=Column(String)
 	picture = Column(String, nullable = False)
-	my_friends=relationship("User",secondary=friend_association)
+	my_friends = relationship("User", 
+							  secondary=friend_association, 
+							  primaryjoin=id==friend_association.c.user_id,
+							  secondaryjoin=id==friend_association.c.friend_id,
+							  lazy=True)
+
 
 class Questions(Base):
 	__tablename__='questions'
