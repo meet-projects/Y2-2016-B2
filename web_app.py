@@ -44,8 +44,13 @@ def sign_up():
 @app.route('/suggest<int:user_id>')
 def suggest_friend(user_id):
 	session.query(Friend).filter_by(person=user_id).frist()
-
-
+	return redirect(url_for('suggest_friend',user_id = user.id))
+	
+def user_profile():
+	return render_template('user_profile.html')
+	return redirect(url_for('user_profile'))
+	
+	
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -15,6 +15,7 @@
 	position:absolute;
 	top:800px;
 	left:0px;
+}
 </style>
 </head>
 
@@ -35,7 +36,7 @@ Write about yourself
 
 <div id = "buttons">
 <a href="{{ url_for('questions') }}" class="btn btn-info" role="button">Edit your answers</a>
-<a href="{{ url_for('suggest_friend') }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<a href="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
 </div>
 
 

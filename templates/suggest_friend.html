@@ -28,6 +28,7 @@
     <td>{{ friend.name }}</td>
     <td>{{ friend.status }}</td>
     <td>{{ friend.picture }}</td>
-    <td><a href="{{url_for('friend_profil', friend_id=friend.id)}}" class="btn btn-info" role="button">wiew</a></td>
+    <td><a href="{{url_for('friend_profile', friend_id=friend.id)}}" class="btn btn-info" role="button">view</a></td>
   </tr>
   {%endfor%}
+<a href="{{url_for('user_profile') }}" class="btn btn-info role="button">My profile </a>
