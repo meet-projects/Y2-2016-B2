@@ -1,0 +1,43 @@
+<DOCTYPE! html>
+<html>
+<head>
+
+<style type="text/css">
+	#description {
+	position:absolute;
+	height:200px;
+	top:400px;
+	left:0px;
+}
+	#buttons{
+	position:absolute;
+	top:800px;
+	left:0px;
+}
+</style>
+
+
+</head>
+<body>
+<h1>"{{friend.name}} profile</h1>
+<div id="picture">
+<br><br>
+<img src= "{{ friend.picture }}" width='200' height = '200'>
+</div>
+<br><br>
+About Me
+<p>{{friend.about_myself}
+}
+	
+</p>
+<div id="button">
+<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<br>
+<br>
+<a href ="https://www.facebook.com/" class="radio" role="button">Go to Facebook</a>
+	
+</div>
+
+
+</body>
+</html>

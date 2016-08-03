@@ -47,13 +47,10 @@ def sign_up():
 
 
 @app.route('/suggest<int:user_id>')
-<<<<<<< HEAD
 def suggest_friends(user_id):
 	#user=session.query(Friends).filter_by(person=user_id).frist()
 	return render_template('suggest_friends.html')
 
-
-=======
 def suggest_friend(user_id):
 	session.query(Friend).filter_by(person=user_id).frist()
 	return redirect(url_for('suggest_friend',user_id = user.id))
@@ -62,8 +59,6 @@ def user_profile():
 	return render_template('user_profile.html')
 	return redirect(url_for('user_profile'))
 	
-	
->>>>>>> 0748f4a2efd7e94f21989f8ba22156e9a0be4c5c
 
 if __name__ == '__main__':
     app.run(debug=True)
