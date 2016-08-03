@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, redirect
+from database_setup import Base, User, Friends
 app = Flask(__name__)
 
 # SQLAlchemy stuff
@@ -20,13 +21,30 @@ session = DBSession()
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def log_in():
-	return render_template('login.html')
+	if request.method == 'GET':
+		return render_template('login.html')
+	else:
+		user_email=request.form['email']
+		user=session.query(User).filter_by(email=user_email).first()
+		user_password=request.form['password']
+		if user.password==user_password:
+			return redirect(url_for('suggest_friend'))
+		else:
+			return render_template('login.html')
+
+
 
 @app.route('/signup')
 def sign_up():
 	return render_template('signup.html')
+
+
+@app.route('/suggest<int:user_id>')
+def suggest_friend(user_id):
+	session.query(Friend).filter_by(person=user_id).frist()
+
 
 
 if __name__ == '__main__':
