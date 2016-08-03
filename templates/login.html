@@ -11,10 +11,13 @@
 <body>
 <div class="container">
 <form action="{{url_for('log_in')}}" method="post" role="form">
-	<h1>Login</h1>
+	<h1 align="center">Login</h1>
+	<br>
 	Email:<input type="text" name="email" placeholder="Email">
+	<br>
 
 	Password:<input type="password" name="password" placeholder="Password">
+	<br>
 	
 	<a href="{{ url_for('sign_up') }}" value=Cancel>sign_up</a>
 	
