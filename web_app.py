@@ -57,8 +57,6 @@ def suggest_friends(user_id):
 	'''
 	return render_template('suggest_friends.html', user=user)
 
-
-
 @app.route('/profile/<int:user_id>')	
 def user_profile():
 	return render_template('user_profile.html')
@@ -80,9 +78,5 @@ def questions(user_id):
 
 
 	
-
-	
-	
-
 if __name__ == '__main__':
     app.run(debug=True)

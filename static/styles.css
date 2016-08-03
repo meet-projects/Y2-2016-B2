@@ -1,10 +1,14 @@
-/* Add your CSS Code here */
-
+body{
+	background-color: #a9fbd7;
+	color: black;
+}
 #description {
 	position:relative;
 	height:200px;
 	top:200px;
 	left:500px;
 }
-
+h1 {
+	align:center;
+}
 
