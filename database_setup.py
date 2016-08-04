@@ -37,9 +37,9 @@ class Questions(Base):
 class User_questions(Base):
 	__tablename__='user_questions'
 	id = Column(Integer, primary_key = True)
-	user_id=Column(Integer, ForeignKey("user.id"))
+	user_id=Column(Integer, ForeignKey("user.id"), )
 	question_id=Column(Integer, ForeignKey("questions.id"))
-	user_response=Column(String)
+	user_response=Column(String, nullable = False)
 
 
   	

@@ -13,7 +13,7 @@
 <body>
 
 <div class="container">
-<form action="{{url_for('view_questions', user_id=user.id)}}" method="post" role="form">
+<form action="{{url_for('view_questions')}}" method="post" role="form">
 <div class="row">
 	<h1>simple questions</h1>
 </div>
@@ -22,7 +22,7 @@
 <h2>-Superficial answeruestions:</h2>
 {%for q in simple_questions%}
   <tr>
-    <input type="text" name={{q.text}} placeholder="{{q.text}}">
+    <input type="text" name="{{q.text}}"" placeholder="{{q.text}}">
     <br>
   </tr>
   {%endfor%}
@@ -31,12 +31,12 @@
 
 {%for i in deep_questions%}
   <tr>
-    <input type="text" name={{i.text}} placeholder="{{i.text}}">
+    <input type="text" name="{{i.text}}" placeholder="{{i.text}}">
     <br>
   </tr>
   {%endfor%}
 
-< a href="{{url_for('view_questions', user_id=user.id)}}"><input type="submit" value="Finish"></a>
+<input type="submit" value="Finish">
 
 
 </div>
