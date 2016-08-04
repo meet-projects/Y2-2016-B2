@@ -61,7 +61,40 @@ def sign_up():
 def suggest_friends():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		suggested_friends = []
+		my_users=session.query(User).all()
+		suggested_friends=set()
+		my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
+		my_simple_questions=[]
+		my_deep_questions=[]
+		
+		for i in my_questions:
+			chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
+			if chack_if_deep.deep==True:
+				my_deep_question.append(chack_if_deep)
+			else:
+				my_simple_questions.append(chack_if_deep)
+		
+		for simple in my_simple_questions:
+			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+			for friend in friend_answers:
+				if user.id!=friend.user_id:
+					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=simple.id).first()			
+			
+					if  user_answer.user_response!=friend.user_response:
+
+						suggested_friends.add(friend.user)
+		
+		for deep  in my_deep_questions:
+			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+			for friend in friend_answers:
+				if user.id!=friend.user_id:
+					
+					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=deep.id).first()			
+				
+					if  friend.user_response!=user_answer.user_response:
+						suggested_friends.remove(i)
+				
+
 		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
 	else:
 		return redirect(url_for("log_in"))
@@ -101,7 +134,7 @@ def view_questions():
 				answer = request.form[q.text]
 			
 				a= User_questions(
-					user_id=user_id,
+					user_id=user.id,
 					question_id=question.id,
 					user_response=answer
 					)
