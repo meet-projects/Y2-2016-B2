@@ -21,11 +21,7 @@
 
 <body>
 <h1> {{ user.fullname }} profile </h1>
-<div id = "picture">
-<br>
-<br>
-<img src= "{{ user.picture }}" width='200' height = '200'>
-</div>
+<a href="{{ url_for('friend_list') }}" class="btn btn-info" role="button">View my friends</a>
 <br>
 <br>
 <div >

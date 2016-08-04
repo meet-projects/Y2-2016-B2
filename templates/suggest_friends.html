@@ -26,8 +26,10 @@
       <td>{{friend.fullname}}</td>
       <td><a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">View</a></td>
   </tr>
+
 {% endfor %}
 </thead>
 <a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
+
 <tbody>
 
