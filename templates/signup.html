@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-­‐8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">               
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+
 	<title>Sign Up</title>
 </head>
 <body>
-	<h1 align="center">Create an Account!</h1>
-	Full Name:<input type="text" name="email" placeholder="Full Name">
-	
+	<center>
+	<h1  class = "h" >Create Account!</h1>
+	<input type="text" name="email" placeholder="Full Name">
 	<br><br>
-	Email:<input type="text" name="email" placeholder="Email">
+	<input type="text" name="email" placeholder="Email">
 	<br><br>
-	Password:<input type="password" name="password" placeholder="Password">
+	<input type="password" name="password" placeholder="Password">
 	<br><br>
-	Confirm Password:<input type="text" name="password" placeholder="Confirm Password">
+	<input type="password" name="password" placeholder="Confirm Password">
 	<br><br>
 	<input type="submit" value="Submit">
 
 	<a href="{{url_for('log_in') }}" ><input type="submit" value="Cancel"> </a>
 
+</center>
 </body>
 </html>
