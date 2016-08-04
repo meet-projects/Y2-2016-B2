@@ -53,7 +53,7 @@ def sign_up():
 		session.add(new_user)
 		session.commit()
 		flask_session['user_email'] = user_email
-		return redirect(url_for('suggest_friends'))
+		return redirect(url_for('view_questions'))
  		
 
 
@@ -111,6 +111,35 @@ def view_questions():
 			return redirect(url_for('suggest_friends', user_id=user.id))
 	else:
 		return redirect(url_for("log_in"))
+
+@app.route('/friend_list/')
+def friend_list():
+	if 'user_email' in flask_session:
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+		friends=user.my_friends
+		
+		return render_template('friend_list.html')
+	else:
+		return redirect(url_for("log_in"))
+
+@app.route('/friend_profile/<int:friend_id>')
+def friend_profile(friend_id):
+	if 'user_email' in flask_session:
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+		addfriend = request.form['addfriend']
+		user.myfriends.append(addfriend)
+		
+		return render_template('friend_profile.html, friend_id = friend.id')
+
+	else:
+		
+		return redirect(url_for("log_in"))
+	
+	
+		
+		
+		
+	
 		
 
 app.secret_key = 'u4yeoiuoxzic uoxzayw23'

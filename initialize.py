@@ -48,6 +48,8 @@ for i in deep_q:
         )
     session.add(a)
 '''
+
+
 session.add(Tehila)
 session.add(Amos)
 

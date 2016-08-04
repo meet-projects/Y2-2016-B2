@@ -3,10 +3,10 @@
 <head>
 
 <style type="text/css">
-	#description {
+	p{
 	position:absolute;
 	height:200px;
-	top:400px;
+	top:100px;
 	left:0px;
 }
 	#buttons{
@@ -19,23 +19,19 @@
 
 </head>
 <body>
-<h1>"{{friend.name}} profile</h1>
-<div id="picture">
-<br><br>
-<img src= "{{ friend.picture }}" width='200' height = '200'>
-</div>
-<br><br>
-About Me
-<p>{{friend.about_myself}
-}
-	
-</p>
+<form action="{{url_for('friend_profile, friend_id = friend.id) }}" method = "post">
+<h1>"{{user.fullname}} profile</h1>
+
+About Friend
+<p>{{user.about_myself}}</p>
+
 <div id="button">
-<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
-<br>
-<br>
-<a href ="https://www.facebook.com/" class="radio" role="button">Go to Facebook</a>
-	
+<a href ="{{ url_for('suggest_friend , friend_id=friend.id') }}" class="btn btn-info" role="button">Back to suggested friends</a>
+
+<input type = "button" name ="addfriend" >Add friend</a>
+<input type = "submit"></a>
+
+</form>
 </div>
 
 
