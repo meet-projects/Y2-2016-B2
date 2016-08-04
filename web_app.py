@@ -49,11 +49,11 @@ def sign_up():
 		user_name = request.form['name']
 		user_email=request.form['email']
 		user_password=request.form['password']
-		new_user = User(name = user_name, email= user_email, password=user_password)
+		new_user = User(fullname = user_name, email= user_email, password=user_password)
 		session.add(new_user)
 		session.commit()
 		flask_session['user_email'] = user_email
-		return redirect(url_for('suggest_friends', user_id=user.id))
+		return redirect(url_for('suggest_friends'))
  		
 
 
