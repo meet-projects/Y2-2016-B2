@@ -136,8 +136,27 @@ def friend_profile(friend_id):
 		return redirect(url_for("log_in"))
 	
 	
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    flask_session.pop('username', None)
+    return redirect(url_for('log_in'))	
+
+@app.route('/delete_account', methods=['GET','POST'])
+def delete_account():
+	if 'user_email' in flask_session:
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()	
+    		
+    		if request.method == 'GET':
+         		return render_template('delete_account.html', user = user)
+		else:
+			 session.delete(user)	
+			 session.commit()
+			 return redirect(url_for('user_profile'))
+
+	else:
 		
-		
+		return redirect(url_for("log_in"))
 		
 	
 		
