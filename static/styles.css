@@ -1,6 +1,17 @@
 body{
-	background-color: #a9fbd7;
-	color: black;
+	background-image:url("background.jpg");
+	color: white;
+	font-family:garamond;
+	font-size: 25px;
+}
+h5{
+	font: 400 130px/0.8 'Cookie', Helvetica, sans-serif;
+	text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+	font-size:225px;
+	
+}
+h2{
+	font-color:black;
 }
 #description {
 	position:relative;
@@ -8,7 +19,42 @@ body{
 	top:200px;
 	left:500px;
 }
-h1 {
-	align:center;
+#headerone {
+	color:black;
+	text-align: center;
 }
+#createfont{
+	color:red;
+	text-align: center;
+}
+.h {
+	color:white;
+	font-size:100px;
+	font: 400 130px/0.8 'Great Vibes', Helvetica, sans-serif;
+	color: #fff;
+	text-shadow: 4px 4px 3px rgba(0,0,0,0.1);
+}
+body {
+	background-image:url("background.jpg");
+    }
 
+
+
+
+/*<style type="text/css">
+	#description {
+	position:absolute;
+	height:200px;
+	top:400px;
+	left:0px;
+
+}
+	#buttons{
+	position:absolute;
+	top:800px;
+	left:0px;
+}
+body{
+	background-image: url("static/background22.gif");
+}
+</style>*/
