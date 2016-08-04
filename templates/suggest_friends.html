@@ -20,7 +20,17 @@
     <th>Name</th>
     <th>Picture</th>
     <th>Status</th>
+    <th></th>
   </tr>
+{% for friend in suggested_friends %}
+  <tr> 
+      <td>{{friend.name}}</td>
+      <td>{{friend.picture}}</td>
+      <td>{{friend.status}}</td>
+      <td><a href ="{{ url_for('friend_profile', friend_id=friend.id) }}" class="btn btn-info" role="button">View</a></td>
+  </tr>
+{% endfor %}
 </thead>
+<a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
 <tbody>
 

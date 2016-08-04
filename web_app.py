@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect
+from flask import session as flask_session
 
 app = Flask(__name__)
 
@@ -31,24 +32,39 @@ def log_in():
 		print(user_email)
 		print(user_password)
 		user=session.query(User).filter_by(email=user_email).first()
-		print(user.password)
-		print(user_email)
-		print(user.email)
-		if user.password==user_password:
+		
+		if user is not None and  user.password==user_password:
+			flask_session['user_email'] = user_email
 			return redirect(url_for('suggest_friends', user_id=user.id))
 		else:
 			return render_template('login.html')
 
 
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET','POST'])
 def sign_up():
-	return render_template('signup.html')
+	if request.method == 'GET':
+		return render_template('signup.html')
+	else:
+		user_name = request.form['name']
+		user_email=request.form['email']
+		user_password=request.form['password']
+		new_user = User(name = user_name, email= user_email, password=user_password)
+		session.add(new_user)
+		session.commit()
+		flask_session['user_email'] = user_email
+		return redirect(url_for('suggest_friends', user_id=user.id))
+ 		
 
 
-@app.route('/suggest/<int:user_id>')
-def suggest_friends(user_id):
-	return render_template('suggest_friends.html')
+@app.route('/suggest/')
+def suggest_friends():
+	if 'user_email' in flask_session:
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+		suggested_friends = []
+		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
+	else:
+		return redirect(url_for("log_in"))
 	'''
 	user=session.query(User).filter_by(id=user_id).first()
 	suggests=session.query(User).all()
@@ -58,9 +74,15 @@ def suggest_friends(user_id):
 	
 	return render_template('suggest_friends.html', user=user)
 	'''
-@app.route('/profile/<int:user_id>')	
+@app.route('/profile/')	
 def user_profile():
-	return render_template('user_profile.html', )
+	if 'user_email' in flask_session:
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+		return render_template('user_profile.html',user=user)
+		
+	else:
+		return redirect(url_for("log_in"))
+	
 	
 @app.route('/view_questions/<int:user_id>', methods=['GET','POST'])	
 def view_questions(user_id):
@@ -69,11 +91,12 @@ def view_questions(user_id):
 	deep_questions=session.query(Questions).filter_by(deep=True).all()
 	if request.method == 'GET':
 		return render_template('view_questions.html', user=user,simple_questions=simple_questions, deep_questions=deep_questions  )
+
+
 	
 		
 		
 
-
-	
+app.secret_key = 'u4yeoiuoxzic uoxzayw23'
 if __name__ == '__main__':
     app.run(debug=True)

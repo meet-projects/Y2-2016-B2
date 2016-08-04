@@ -14,6 +14,11 @@
 			<td>{{friend.id}}</td>
 			<td>{{friend.name}}</td>
 		</tr>
-
+<br>
+<br>
+<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<br>
+<a href ="{{ url_for('user_profile', user_id=user.id) }}" class="btn btn-info" role="button">Back to my profile</a>
+<br>
 </body>
 </html>
