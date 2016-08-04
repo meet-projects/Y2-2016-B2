@@ -11,15 +11,22 @@
 </head>
 <body class="rita">
 	<h1>View My Friends</h1>
+	<form action="{{url_for('friend_list') }}" method = "post">
 	<table border="1">
 		<tr>
-			<th>Id</th>
 			<th>Friend's Name</th>
+			<th></th>
 		</tr>
 		<tr>
-			<td>{{friend.id}}</td>
-			<td>{{friend.name}}</td>
+			<td></td>
+			<td><a href ="{{ url_for('friend_profile') }}" class="btn btn-info" role="button">view friends profile</a></td>
 		</tr>
-
+	</form>
+<br>
+<br>
+<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<br>
+<a href ="{{ url_for('user_profile', user_id=user.id) }}" class="btn btn-info" role="button">Back to my profile</a>
+<br>
 </body>
 </html>

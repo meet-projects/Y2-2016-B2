@@ -17,7 +17,7 @@ class User(Base):
 	fullname = Column(String)
 	email = Column(String)
 	password = Column(String)
-	picture = Column(String, nullable = False)
+	# picture = Column(String, nullable = False)
 	my_friends = relationship("User", 
 							  secondary=friend_association, 
 							  primaryjoin=id==friend_association.c.user_id,
@@ -38,8 +38,9 @@ class User_questions(Base):
 	__tablename__='user_questions'
 	id = Column(Integer, primary_key = True)
 	user_id=Column(Integer, ForeignKey("user.id"))
+	user = relationship("User")
 	question_id=Column(Integer, ForeignKey("questions.id"))
-	user_response=Column(String)
+	user_response=Column(String, nullable = False)
 
 
   	
