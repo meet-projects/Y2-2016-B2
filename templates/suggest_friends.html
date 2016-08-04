@@ -13,22 +13,20 @@
 <body>
 
 <div class="container">
-
+<h1> Suggested Friends</h1>
 <table class="table table-hover" >
 <thead>
-<h1> Suggested Friends
-  <tr>
     <th>Name</th>
    
     <th></th>
-  </tr>
+</thead>
 {% for friend in suggested_friends %}
   <tr> 
       <td>{{friend.fullname}}</td>
       <td><a href ="{{ url_for('friend_profile' ,friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
   </tr>
 {% endfor %}
-</thead>
+</table>
 <a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
-<tbody>
+
 
