@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-­‐8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">             
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<title></title>
+</head>
+<body class="rita">
+	<h1>View My Friends</h1>
+	<form action="{{url_for('friend_list',friends = friends) }}" method = "post">
+	<table border="1">
+	{% for friend in user %}
+		<tr>
+			<th>Friend's Name</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td></td>
+			<td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">view friends profile</a></td>
+		</tr>
+	{% endfor %}
+	</form>
+<br>
+<br>
+<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<br>
+<a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
+<br>
+</body>
+</html>

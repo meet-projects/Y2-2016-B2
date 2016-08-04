@@ -55,12 +55,12 @@
 <h1>Delte account</h1>
 </div>
 
-<form action="{{ url_for('delete_account', user_id = user.id) }}" method="post">
-Are you sure you want to delete {{ user.fullname }}?<br>
+<form action="{{ url_for('delete_account', user.my_friends = user.my_friends.id) }}" method="post">
+Are you sure you want to delete this friend?<br>
 <input type="submit" value="Yes" class="btn btn-info" role="button">
 </form>
 
-<a href="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Cancel</a>
+<a href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">Cancel</a>
 
 </div>
 

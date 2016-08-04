@@ -16,7 +16,7 @@ Tehila = User()
 Tehila.fullname="Tehila Pelled" 
 Tehila.email="tehilapelled16@gmail.com"
 Tehila.password="password"
-#Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming and i am 16 years old."
+Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming and i am 16 years old."
 
 			 
 
@@ -26,13 +26,13 @@ Tehila.password="password"
 Amos = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
-  			  #about_myself = "Hi I am Amos"
+  			  about_myself = "Hi I am Amos"
 
 			  )
 Amos2 = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
-			  #about_myself = "Hi I am Amos"
+			  about_myself = "Hi I am Amos"
 			  )
 
 simple_q=['Whats your age?','Gender(male/female/other)?','Do you have brothers or sisters?How many?','Where do you learn? ', 'What is your nationality','Where do you live? ', ' Favourite color? ' ]
@@ -51,11 +51,10 @@ for i in deep_q:
         deep=True
         )
     session.add(a)
-
-<<<<<<< HEAD
 '''
-#session.add(Tehila)
-#session.add(Amos)
+
+session.add(Tehila)
+session.add(Amos)
 
 Amos.my_friends.append(Tehila)
 

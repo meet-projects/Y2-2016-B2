@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body id = "sky">
+
+<div class="container">
+
+<table class="table table-hover" >
+<thead>
+<h1 > Suggested Friends
+  <tr>
+    <th>Name</th>
+   
+    <th></th>
+  </tr>
+{% for friend in suggested_friends %}
+  <tr> 
+      <td>{{friend.fullname}}</td>
+      <td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
+      <td><a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">Remove</a></td>
+  </tr>
+{% endfor %}
+</thead>
+<a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
+<tbody>
+

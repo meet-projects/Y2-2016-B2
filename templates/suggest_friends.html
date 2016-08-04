@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 	<head>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+=======
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+>>>>>>> 5d970bb6fff1720857d7420ed8c0834a5e9b83b3
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +15,9 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
+
 </head>
-<body>
+<body id = "sky">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -56,6 +62,7 @@
 <h1> Suggested Friends</h1>
 <table class="table table-hover tables" >
 <thead>
+  <tr>
     <th>Name</th>
    
     <th></th>
@@ -63,7 +70,8 @@
 {% for friend in suggested_friends %}
   <tr> 
       <td>{{friend.fullname}}</td>
-      <td><a href ="{{ url_for('friend_profile' ,friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
+      <td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
+      
   </tr>
 {% endfor %}
 </table>

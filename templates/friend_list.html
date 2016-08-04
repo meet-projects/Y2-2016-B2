@@ -47,8 +47,9 @@
 
 
 	<h1>View My Friends</h1>
-	<form action="{{url_for('friend_list') }}" method = "post">
-	<table class="table table-hover tables" >
+	<form action="{{url_for('friend_list',friends = friends) }}" method = "post">
+	<table border="1">
+
 		<thead>
 			<th>Friend's Name</th>
 			<th></th>
@@ -60,7 +61,12 @@
   		</tr>
 		{% endfor %}
 	</form>
-
+<br>
+<br>
+<a href ="{{ url_for('suggest_friends', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<br>
+<a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
+<br>
 
 </body>
 </html>

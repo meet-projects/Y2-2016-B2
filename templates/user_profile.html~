@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-­‐8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">                
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css') }}">
+
+</head>
+
+
+
+<body>
+<h1> {{ user.fullname }} profile </h1>
+<a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
+
+<br>
+<br>
+<form action = "{{url_for('user_profile') }}" method = "post">
+<div >
+Write about yourself
+<textarea id = "description"rows="4" cols="50">
+</textarea>
+<input type="submit" value = "save" name = "about" id = "blacksubmit">
+</div> 
+</form>
+<br>
+<br>
+<div id = "buttons">
+<a href="{{ url_for('view_questions') }}" class="btn btn-info" role="button">Edit your answers</a>
+<a href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
+<a href="{{ url_for('logout') }}" class="btn btn-info" role="button" type="sumbit">logout</a>
+<a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">delete my account</a>
+</div>
+
+
+</body>
+
+</html>
