@@ -1,27 +1,30 @@
-<DOCTYPE! html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-­‐8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">                
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css') }}">
 
-<style type="text/css">
-	#description {
-	position:absolute;
-	height:200px;
-	top:400px;
-	left:0px;
-
-}
-	#buttons{
-	position:absolute;
-	top:800px;
-	left:0px;
-}
-</style>
 </head>
 
+<<<<<<< HEAD
+<body >
+<h1> "{{ user.name }}" profile </h1>
+<div id = "picture">
+<br>
+<br>
+<img src= "{{ user.picture }}" width='200' height = '200'>
+</div>
+=======
 <body>
 <h1> {{ user.fullname }} profile </h1>
 <a href="{{ url_for('friend_list') }}" class="btn btn-info" role="button">View my friends</a>
+>>>>>>> 82e6bd9da5846aaf44ccb4a44ae40a7cbc831ffa
 <br>
 <br>
 <div >
@@ -33,6 +36,8 @@ Write about yourself
 <div id = "buttons">
 <a href="{{ url_for('view_questions') }}" class="btn btn-info" role="button">Edit your answers</a>
 <a href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<a href="{{ url_for('logout') }}" class="btn btn-info" role="button" type="sumbit">logout</a>
+<a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">delete my account</a>
 </div>
 
 

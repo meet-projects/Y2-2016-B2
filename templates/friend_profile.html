@@ -1,6 +1,12 @@
-<DOCTYPE! html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+	<meta charset="utf-­‐8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">                 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 	p{
@@ -18,13 +24,28 @@
 
 
 </head>
+<<<<<<< HEAD
+<body class="rita">
+<h1>"{{friend.name}} profile</h1>
+<div id="picture">
+<br><br>
+<img src= "{{ friend.picture }}" width='200' height = '200'>
+</div>
+<br><br>
+About Me
+<p>{{friend.about_myself}
+}
+	
+</p>
+=======
 <body>
-<form action="{{url_for('friend_profile, friend_id = friend.id) }}" method = "post">
-<h1>"{{user.fullname}} profile</h1>
+<form action="{{url_for('friend_profile, friend_id=friend.id) }}" method = "post">
+<h1>"{{friend.fullname}} profile</h1>
 
 About Friend
-<p>{{user.about_myself}}</p>
+<p>{{friend.about_myself}}</p>
 
+>>>>>>> 82e6bd9da5846aaf44ccb4a44ae40a7cbc831ffa
 <div id="button">
 <a href ="{{ url_for('suggest_friend , friend_id=friend.id') }}" class="btn btn-info" role="button">Back to suggested friends</a>
 
