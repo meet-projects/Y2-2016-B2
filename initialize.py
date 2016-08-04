@@ -47,8 +47,8 @@ for i in deep_q:
         deep=True
         )
     session.add(a)
-'''
 
+'''
 #session.add(Tehila)
 #session.add(Amos)
 

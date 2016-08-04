@@ -50,6 +50,7 @@ def sign_up():
 		user_email=request.form['email']
 		user_password=request.form['password']
 		new_user = User(fullname = user_name, email= user_email, password=user_password)
+		print(new_user.fullname)
 		session.add(new_user)
 		session.commit()
 		flask_session['user_email'] = user_email
