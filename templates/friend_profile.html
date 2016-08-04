@@ -38,8 +38,7 @@ About Friend
 <br>
 
 
-<div id="button">
-<a href ="{{ url_for('suggest_friends' , friend_id=friend.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+
 
 
 <input type = "submit" value="add friend" name="add_friend" id="add">
@@ -51,6 +50,9 @@ About Friend
 <a href = "https://plus.google.com/" class="btn btn-info" role="button">Go to {{friend.fullname}}'s google + page to start your friendship!</a>
 
 </form>
+
+<div id="button">
+<a href ="{{ url_for('suggest_friends' , friend_id=friend.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
 </div>
 
 

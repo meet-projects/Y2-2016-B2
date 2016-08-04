@@ -13,11 +13,17 @@
 </head>
 
 
+<<<<<<< HEAD
 
 <body>
 <h1> {{ user.fullname }} profile </h1>
 <a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
 
+=======
+<body>
+<h1> {{ user.fullname }} profile </h1>
+<a href="{{ url_for('friend_list')  }}" class="btn btn-info" role="button">View my friends</a>
+>>>>>>> 7e72361536058a6ece664e28bb4ca3a4ccbbd09e
 <br>
 <br>
 <form action = "{{url_for('user_profile') }}" method = "post">

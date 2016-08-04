@@ -111,6 +111,7 @@ def suggest_friends():
 def user_profile():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+
 		return render_template('user_profile.html',user=user)
 
 	else:
@@ -149,9 +150,13 @@ def view_questions():
 def friend_list(friends):
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		friends=user.my_friends
+		
 
+<<<<<<< HEAD
 		return render_template('friend_list.html',friends=friends)
+=======
+		return render_template('friend_list.html', user=user)
+>>>>>>> 7e72361536058a6ece664e28bb4ca3a4ccbbd09e
 	else:
 		return redirect(url_for("log_in"))
 
@@ -164,11 +169,13 @@ def friend_profile(friend_id):
 				return render_template('friend_profile.html', friend = friend)
 			else:
 				new_friend=session.query(User).filter_by(id=friend_id).first()
-				
+				print(new_friend.fullname)
 				user.my_friends.append(new_friend)
 				print("we made it!")
 				friend=session.query(User).filter_by(id=friend_id).first()
-				return render_template('friend_profile.html', friend=friend)
+				session.commit()
+				
+				return render_template('friend_list.html',user=user)
 
 		else:
 

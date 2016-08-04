@@ -13,6 +13,7 @@
 	<h1>View My Friends</h1>
 	<form action="{{url_for('friend_list',friends = friends) }}" method = "post">
 	<table border="1">
+<<<<<<< HEAD
 	{% for friend in user %}
 		<tr>
 			<th>Friend's Name</th>
@@ -23,12 +24,25 @@
 			<td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">view friends profile</a></td>
 		</tr>
 	{% endfor %}
+=======
+		<thead>
+			<th>Friend's Name</th>
+			<th></th>
+		</thead>
+		{% for friend in user.my_friends %}
+  		<tr> 
+      		<td>{{friend.fullname}}</td>
+      		<td><a href ="{{ url_for('friend_profile' ,friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
+  		</tr>
+		{% endfor %}
+>>>>>>> 7e72361536058a6ece664e28bb4ca3a4ccbbd09e
 	</form>
 <br>
 <br>
-<a href ="{{ url_for('suggest_friend', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
+<a href ="{{ url_for('suggest_friends', user_id=user.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
 <br>
 <a href ="{{ url_for('user_profile') }}" class="btn btn-info" role="button">Back to my profile</a>
 <br>
+
 </body>
 </html>
