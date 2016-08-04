@@ -22,7 +22,7 @@
 <h2>-Superficial answeruestions:</h2>
 {%for q in simple_questions%}
   <tr>
-    <input type="text" name={{q.text}} placeholder="{{q.text}}">
+    <input type="text" name="{{q.text}}"" placeholder="{{q.text}}">
     <br>
   </tr>
   {%endfor%}
@@ -31,7 +31,7 @@
 
 {%for i in deep_questions%}
   <tr>
-    <input type="text" name={{i.text}} placeholder="{{i.text}}">
+    <input type="text" name="{{i.text}}" placeholder="{{i.text}}">
     <br>
   </tr>
   {%endfor%}

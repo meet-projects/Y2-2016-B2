@@ -69,8 +69,23 @@ def view_questions(user_id):
 	deep_questions=session.query(Questions).filter_by(deep=True).all()
 	if request.method == 'GET':
 		return render_template('view_questions.html', user=user,simple_questions=simple_questions, deep_questions=deep_questions  )
-	
-		
+	else:
+		for q in simple_questions:
+			
+			print (q)
+			question=session.query(Questions).filter_by(text=q.text).first()
+			answer = request.form[q.text]
+			print('hiiiiiiiiiiiiii')
+			a= User_questions(
+				user_id=user_id,
+				question_id=question.id,
+				user_response=answer
+				)
+			session.add(a)
+			
+		session.commit()
+		return redirect(url_for('suggest_friends', user_id=user.id))
+			
 		
 
 
