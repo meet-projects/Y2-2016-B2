@@ -157,21 +157,21 @@ def friend_list():
 
 @app.route('/friend_profile/<int:friend_id>',methods=['GET','POST'] )
 def friend_profile(friend_id):
-	if 'user_email' in flask_session:
-		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+		
 		if request.method == 'GET':
 			friend=session.query(User).filter_by(id=friend_id).first()
-			return render_template('friend_profile.html, friend = friend')
+			return render_template('friend_profile.html', friend = friend)
 		else:
 			addfriend = request.form['addfriend']
 			user.myfriends.append(addfriend)
 			print("we made it!")
 			friend=session.query(User).filter_by(id=friend_id).first()
-			return render_template('friend_profile.html, friend=friend')
+			return render_template('friend_profile.html', friend=friend)
+#if 'user_email' in flask_session:
+#user = session.query(User).filter_by(email = flask_session['user_email']).first()
+#else:
 
-	else:
-
-		return redirect(url_for("log_in"))
+#return redirect(url_for("log_in"))
 
 
 @app.route('/logout')
