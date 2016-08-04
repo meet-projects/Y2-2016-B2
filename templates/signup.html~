@@ -17,7 +17,7 @@
 	<center>
 	<h1  class = "h" >Create Account!</h1>
 
-	<h1 align="center" id = "sign">sign up now!</h1>
+	<h1 align="center">Create an Account!</h1>
 	<form action="{{url_for('sign_up') }}" method = "post">
 	<input type="text" name="name" placeholder="Full Name">
 	

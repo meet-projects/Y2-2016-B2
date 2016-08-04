@@ -35,7 +35,7 @@ Write about yourself
 <a href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">Back to suggested friends</a>
 <a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
 <a href="{{ url_for('logout') }}" class="btn btn-info" role="button" type="sumbit">logout</a>
-
+<a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">delete my account</a>
 </div>
 
 

@@ -42,7 +42,7 @@ About Friend
 <a href ="{{ url_for('suggest_friends' , friend_id=friend.id) }}" class="btn btn-info" role="button">Back to suggested friends</a>
 
 
-<input type = "submit" value="add friend" name="add_friend" id="add">
+<input type = "submit" value="add friend" name="add_friend">
 <br>
 <br>
 <a href = "http://facebook.com" class="btn btn-info" role="button">Go to {{friend.fullname}}'s facebook page to start your friendship!</a>

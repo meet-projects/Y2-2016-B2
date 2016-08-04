@@ -19,7 +19,7 @@
 			<th></th>
 		</tr>
 		<tr>
-			<td>{{friends.fullname}}</td>
+			<td></td>
 			<td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">view friends profile</a></td>
 		</tr>
 	{% endfor %}

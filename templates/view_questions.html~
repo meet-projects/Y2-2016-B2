@@ -22,7 +22,7 @@
 </div>
 <div class="row">
 <div class="col-md-6">
-<h2 class = "whitee">-Superficial Questions:</h2>
+<h2>-Superficial Questions:</h2>
 {%for q in simple_questions%}
   <tr>
     <input type="text" name="{{q.text}}"" placeholder="{{q.text}}">

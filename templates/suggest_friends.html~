@@ -28,7 +28,7 @@
   <tr> 
       <td>{{friend.fullname}}</td>
       <td><a href ="{{ url_for('friend_profile',friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
-      
+      <td><a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">Remove</a></td>
   </tr>
 {% endfor %}
 </thead>

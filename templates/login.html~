@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h5 align="center">FriendShip</h5>
+<h5 align="center">Project Name</h5>
 <h2 id ="headerone"><form action="{{url_for('log_in')}}" method="post" role="form">
 	<br>
 	<br>
