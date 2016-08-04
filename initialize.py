@@ -52,6 +52,7 @@ for i in deep_q:
 #session.add(Tehila)
 #session.add(Amos)
 
+Amos.my_friends.append(Tehila)
 
 session.commit()
 
