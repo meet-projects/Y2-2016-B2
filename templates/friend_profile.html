@@ -19,11 +19,11 @@
 
 </head>
 <body>
-<form action="{{url_for('friend_profile, friend_id = friend.id) }}" method = "post">
-<h1>"{{user.fullname}} profile</h1>
+<form action="{{url_for('friend_profile, friend_id=friend.id) }}" method = "post">
+<h1>"{{friend.fullname}} profile</h1>
 
 About Friend
-<p>{{user.about_myself}}</p>
+<p>{{friend.about_myself}}</p>
 
 <div id="button">
 <a href ="{{ url_for('suggest_friend , friend_id=friend.id') }}" class="btn btn-info" role="button">Back to suggested friends</a>

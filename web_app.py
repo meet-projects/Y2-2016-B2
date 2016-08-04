@@ -32,7 +32,7 @@ def log_in():
 		print(user_email)
 		print(user_password)
 		user=session.query(User).filter_by(email=user_email).first()
-		
+
 		if user is not None and  user.password==user_password:
 			flask_session['user_email'] = user_email
 			return redirect(url_for('suggest_friends', user_id=user.id))
@@ -54,14 +54,47 @@ def sign_up():
 		session.commit()
 		flask_session['user_email'] = user_email
 		return redirect(url_for('view_questions'))
- 		
+
 
 
 @app.route('/suggest/')
 def suggest_friends():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		suggested_friends = []
+		my_users=session.query(User).all()
+		suggested_friends=set()
+		my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
+		my_simple_questions=[]
+		my_deep_questions=[]
+
+		for i in my_questions:
+			chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
+			if chack_if_deep.deep==True:
+				my_deep_question.append(chack_if_deep)
+			else:
+				my_simple_questions.append(chack_if_deep)
+
+		for simple in my_simple_questions:
+			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+			for friend in friend_answers:
+				if user.id!=friend.user_id:
+					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=simple.id).first()
+
+					if  user_answer.user_response!=friend.user_response:
+
+						suggested_friends.add(friend.user)
+
+		for deep  in my_deep_questions:
+			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+			for friend in friend_answers:
+				if user.id!=friend.user_id:
+
+					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=deep.id).first()
+
+					if  friend.user_response!=user_answer.user_response:
+						suggested_friends.remove(i)
+
+
 		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
 	else:
 		return redirect(url_for("log_in"))
@@ -70,21 +103,21 @@ def suggest_friends():
 	suggests=session.query(User).all()
 	for i in suggests:
 		if user.id!=i.id:
-			for 
-	
+			for
+
 	return render_template('suggest_friends.html', user=user)
 	'''
-@app.route('/profile/')	
+@app.route('/profile/')
 def user_profile():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
 		return render_template('user_profile.html',user=user)
-		
+
 	else:
 		return redirect(url_for("log_in"))
-	
-	
-@app.route('/view_questions/', methods=['GET','POST'])	
+
+
+@app.route('/view_questions/', methods=['GET','POST'])
 def view_questions():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
@@ -95,18 +128,18 @@ def view_questions():
 
 		else:
 			for q in simple_questions:
-			
-			
+
+
 				question=session.query(Questions).filter_by(text=q.text).first()
 				answer = request.form[q.text]
-			
+
 				a= User_questions(
-					user_id=user_id,
+					user_id=user.id,
 					question_id=question.id,
 					user_response=answer
 					)
 				session.add(a)
-			
+
 			session.commit()
 			return redirect(url_for('suggest_friends', user_id=user.id))
 	else:
@@ -117,49 +150,54 @@ def friend_list():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
 		friends=user.my_friends
-		
+
 		return render_template('friend_list.html')
 	else:
 		return redirect(url_for("log_in"))
 
-@app.route('/friend_profile/<int:friend_id>')
+@app.route('/friend_profile/<int:friend_id>',methods=['GET','POST'] )
 def friend_profile(friend_id):
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		addfriend = request.form['addfriend']
-		user.myfriends.append(addfriend)
-		
-		return render_template('friend_profile.html, friend_id = friend.id')
+		if request.method == 'GET':
+			friend=session.query(User).filter_by(id=friend_id).first()
+			return render_template('friend_profile.html, friend = friend')
+		else:
+			addfriend = request.form['addfriend']
+			user.myfriends.append(addfriend)
+			print("we made it!")
+			friend=session.query(User).filter_by(id=friend_id).first()
+			return render_template('friend_profile.html, friend=friend')
 
 	else:
-		
+
 		return redirect(url_for("log_in"))
-	
-	
+
+
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
     flask_session.pop('username', None)
-    return redirect(url_for('log_in'))	
+    return redirect(url_for('log_in'))
 
 @app.route('/delete_account', methods=['GET','POST'])
 def delete_account():
 	if 'user_email' in flask_session:
-		user = session.query(User).filter_by(email = flask_session['user_email']).first()	
-    		
+		user = session.query(User).filter_by(email = flask_session['user_email']).first()
+
     		if request.method == 'GET':
          		return render_template('delete_account.html', user = user)
 		else:
-			 session.delete(user)	
+			 session.delete(user)
 			 session.commit()
 			 return redirect(url_for('user_profile'))
 
 	else:
-		
+
 		return redirect(url_for("log_in"))
-		
-	
-		
+
+
+
 
 app.secret_key = 'u4yeoiuoxzic uoxzayw23'
 if __name__ == '__main__':
