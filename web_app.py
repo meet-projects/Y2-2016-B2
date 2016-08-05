@@ -53,6 +53,16 @@ def sign_up():
 		print(new_user.fullname)
 		session.add(new_user)
 		session.commit()
+		all_questions=session.query(Questions).all()
+		for i in all_questions:
+			a= User_questions(
+					user_id=new_user.id,
+					question_id=i.id,
+					user_response=" "
+					)
+			session.add(a)
+
+		session.commit()
 		flask_session['user_email'] = user_email
 		return redirect(url_for('view_questions'))
 
@@ -62,52 +72,73 @@ def sign_up():
 def suggest_friends():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		my_users=session.query(User).all()
-		suggested_friends=set()
+
+	# 	my_users=session.query(User).all()
+	# 	suggested_friends=set()
+	# 	my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
+	# 	my_simple_questions=[]
+	# 	my_deep_questions=[]
+
+	# 	for i in my_questions:
+	# 		chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
+	# 		if chack_if_deep.deep == True:
+	# 			my_deep_questions.append(chack_if_deep)
+	# 		else:
+	# 			my_simple_questions.append(chack_if_deep)
+
+	# 	for simple in my_simple_questions:
+	# 		friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+	# 		for friend in friend_answers:
+	# 			if user.id!=friend.user_id:
+	# 				user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=simple.id).first()
+
+	# 				if  user_answer.user_response!=friend.user_response:
+
+	# 					suggested_friends.add(friend.user)
+
+	# 	for deep  in my_deep_questions:
+	# 		friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
+	# 		for friend in friend_answers:
+	# 			if user.id!=friend.user_id:
+
+	# 				user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=deep.id).first()
+
+	# 				if  friend.user_response!=user_answer.user_response:
+	# 					suggested_friends.remove(i)
+	# 	print("asdfghjk")
+
+	# 	return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
+		my_peuples=session.query(User).all()
+		suggested_friends=[]
+		# for peuple in my_peuples:
+		# 	suggested_friends.append(peuple)
 		my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
-		my_simple_questions=[]
-		my_deep_questions=[]
-
-		for i in my_questions:
-			chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
-			if chack_if_deep.deep==True:
-				my_deep_questions.append(chack_if_deep)
-			else:
-				my_simple_questions.append(chack_if_deep)
-
-		for simple in my_simple_questions:
-			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
-			for friend in friend_answers:
-				if user.id!=friend.user_id:
-					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=simple.id).first()
-
-					if  user_answer.user_response!=friend.user_response:
-
-						suggested_friends.add(friend.user)
-
-		for deep  in my_deep_questions:
-			friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
-			for friend in friend_answers:
-				if user.id!=friend.user_id:
-
-					user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=deep.id).first()
-
-					if  friend.user_response!=user_answer.user_response:
-						suggested_friends.remove(i)
-
-
+		for i in range(len(my_questions)):
+			print("WE ARE HEREEEEEEEE")
+			for peuple in my_peuples:
+				if user.id!=peuple.id:
+					my_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=user.id).first()
+					friend_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=peuple.id).first()
+					if my_answer.user_response!=" ":
+						if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==True:
+							#suggested_friends.append(peuple)
+							if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==False:
+								suggested_friends.append(peuple)
 		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
+
+
+
 	else:
 		return redirect(url_for("log_in"))
-	'''
-	user=session.query(User).filter_by(id=user_id).first()
-	suggests=session.query(User).all()
-	for i in suggests:
-		if user.id!=i.id:
-			for
+	# '''
+	# user=session.query(User).filter_by(id=user_id).first()
+	# suggests=session.query(User).all()
+	# for i in suggests:
+	# 	if user.id!=i.id:
+	# 		for
 
-	return render_template('suggest_friends.html', user=user)
-	'''
+	# return render_template('suggest_friends.html', user=user)
+	# '''
 @app.route('/profile/', methods=['GET','POST'])
 def user_profile():
 	if 'user_email' in flask_session:
@@ -139,28 +170,21 @@ def view_questions():
 			for q in simple_questions:
 
 
-				question=session.query(Questions).filter_by(text=q.text).first()
+				
 				answer = request.form[q.text]
-
-				a= User_questions(
-					user_id=user.id,
-					question_id=question.id,
-					user_response=answer
-					)
-				session.add(a)
-
+				print(answer)
+				print('we are here')
+				if answer!=" ":
+					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
+					question.user_response=answer
+				
 			for q in deep_questions:
 
 
-				question=session.query(Questions).filter_by(text=q.text).first()
 				answer = request.form[q.text]
-
-				a= User_questions(
-					user_id=user.id,
-					question_id=question.id,
-					user_response=answer
-					)
-				session.add(a)
+				if answer!=" ":
+					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
+					question.user_response=answer
 
 
 			session.commit()
