@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-	<head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-=======
+
+	
 <head>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
->>>>>>> 5d970bb6fff1720857d7420ed8c0834a5e9b83b3
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +13,7 @@
 
 
 
-</head>
-<body id = "sky">
+
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -35,7 +31,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url_for('friend_list')  }}" role="button">My Friends &nbsp;&nbsp;&nbsp;|</a></li>
+        <li><a href="{{ url_for('friend_list',user=user)   }}" role="button">My Friends &nbsp;&nbsp;&nbsp;|</a></li>
         <li><a href ="{{ url_for('user_profile') }}" role="button">My Profile &nbsp;&nbsp;&nbsp;|</a></li>
         <li><a href="{{ url_for('view_questions') }}" role="button">Question &nbsp;&nbsp;&nbsp;|</a></li>
 

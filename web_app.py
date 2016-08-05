@@ -71,7 +71,7 @@ def suggest_friends():
 		for i in my_questions:
 			chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
 			if chack_if_deep.deep==True:
-				my_deep_question.append(chack_if_deep)
+				my_deep_questions.append(chack_if_deep)
 			else:
 				my_simple_questions.append(chack_if_deep)
 
@@ -112,8 +112,14 @@ def suggest_friends():
 def user_profile():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-
-		return render_template('user_profile.html',user=user)
+		if request.method == 'GET':
+			
+			return render_template('user_profile.html',user=user)
+		else:
+			about=request.form['about']
+			print (about)
+			user.about_myself=about
+			return render_template('user_profile.html',user=user)
 
 	else:
 		return redirect(url_for("log_in"))
@@ -126,6 +132,7 @@ def view_questions():
 		simple_questions=session.query(Questions).filter_by(deep=False).all()
 		deep_questions=session.query(Questions).filter_by(deep=True).all()
 		if request.method == 'GET':
+
 			return render_template('view_questions.html', user=user,simple_questions=simple_questions, deep_questions=deep_questions  )
 
 		else:
@@ -142,19 +149,35 @@ def view_questions():
 					)
 				session.add(a)
 
+			for q in deep_questions:
+
+
+				question=session.query(Questions).filter_by(text=q.text).first()
+				answer = request.form[q.text]
+
+				a= User_questions(
+					user_id=user.id,
+					question_id=question.id,
+					user_response=answer
+					)
+				session.add(a)
+
+
 			session.commit()
 			return redirect(url_for('suggest_friends', user_id=user.id))
 	else:
 		return redirect(url_for("log_in"))
 
 @app.route('/friend_list')
-def friend_list(friends):
+def friend_list():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
-		
+		print("we are here")
+		friends=user.my_friends
 
-		return render_template('friend_list.html',friends=friends)
-#		return render_template('friend_list.html', user=user)
+
+		return render_template('friend_list.html',user=user)
+		#return render_template('friend_list.html', user=user)
 	else:
 		return redirect(url_for("log_in"))
 
@@ -170,6 +193,7 @@ def friend_profile(friend_id):
 				print(new_friend.fullname)
 				user.my_friends.append(new_friend)
 				print("we made it!")
+
 				friend=session.query(User).filter_by(id=friend_id).first()
 				session.commit()
 				

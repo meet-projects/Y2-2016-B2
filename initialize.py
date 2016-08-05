@@ -16,7 +16,7 @@ Tehila = User()
 Tehila.fullname="Tehila Pelled" 
 Tehila.email="tehilapelled16@gmail.com"
 Tehila.password="password"
-#Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming and i am 16 years old."
+Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming and i am 16 years old."
 
 			 
 
@@ -26,7 +26,7 @@ Tehila.password="password"
 Amos = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
-  			  #about_myself = "Hi I am Amos"
+  			  about_myself = "Hi I am Amos"
 
 			  )
 Amos2 = User(fullname="Amos Ro ", 
@@ -52,12 +52,12 @@ for i in deep_q:
         )
     session.add(a)
 
-<<<<<<< HEAD
-'''
-#session.add(Tehila)
-#session.add(Amos)
 
-Amos.my_friends.append(Tehila)
+
+session.add(Tehila)
+session.add(Amos)
+'''
+#Amos.my_friends.append(Tehila)
 
 session.commit()
 

@@ -61,7 +61,7 @@
 <h2>-Simple Questions:</h2>
 {%for q in simple_questions%}
   <tr>
-    <input type="text" name="{{q.text}}"" placeholder="{{q.text}}">
+    <p>{{q.text}}:</p><input type="text" name="{{q.text}}" placeholder="">
     <br>
   </tr>
   {%endfor%}

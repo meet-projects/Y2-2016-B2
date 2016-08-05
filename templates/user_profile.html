@@ -13,13 +13,8 @@
 </head>
 
 
-<<<<<<< HEAD
 
-<body>
-<h1> {{ user.fullname }} profile </h1>
-<a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
 
-=======
 <body>
 
 
@@ -59,37 +54,23 @@
 
 
 <h1> {{ user.fullname }} profile </h1>
-<<<<<<< HEAD
 <br>
 <br>
 
 
-<div id = "buttons">
 
-<a href="{{ url_for('delete_account') }}" class="btn btn-info" role="button" type="sumbit">delete my account</a>
-=======
-<a href="{{ url_for('friend_list')  }}" class="btn btn-info" role="button">View my friends</a>
->>>>>>> 7e72361536058a6ece664e28bb4ca3a4ccbbd09e
-<br>
-<br>
 <form action = "{{url_for('user_profile') }}" method = "post">
 <div >
 Write about yourself
-<textarea id = "description"rows="4" cols="50">
+<textarea id = "description"rows="4" name = "about" cols="50">
+{{user.about_myself}}
 </textarea>
-<input type="submit" value = "save" name = "about" id = "blacksubmit">
+<input type="submit" value = "save"  id = "blacksubmit">
 </div> 
 </form>
 <br>
 <br>
-<div id = "buttons">
-<a href="{{ url_for('view_questions') }}" class="btn btn-info" role="button">Edit your answers</a>
-<a href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">Back to suggested friends</a>
-<a href="{{ url_for('friend_list',friends=friends) }}" class="btn btn-info" role="button">View my friends</a>
-<a href="{{ url_for('logout') }}" class="btn btn-info" role="button" type="sumbit">logout</a>
 
->>>>>>> 5d970bb6fff1720857d7420ed8c0834a5e9b83b3
-</div>
 
 
 </body>
