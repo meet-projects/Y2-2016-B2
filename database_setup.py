@@ -18,7 +18,7 @@ class User(Base):
 	email = Column(String)
 	password = Column(String)
 	about_myself = Column(String)
-	# picture = Column(String, nullable = False)
+	#picture = Column(String, nullable = False)
 	my_friends = relationship("User", 
 							  secondary=friend_association, 
 							  primaryjoin=id==friend_association.c.user_id,

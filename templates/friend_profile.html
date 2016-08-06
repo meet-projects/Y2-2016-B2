@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-	<meta charset="utf-­‐8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">                 
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+<!-- 
 <style type="text/css">
 	p{
 	position:absolute;
@@ -20,12 +26,10 @@
 	top:800px;
 	left:0px;
 }
-</style>
-
-
+</style> -->
 </head>
 
-<body>
+<body >
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -60,35 +64,28 @@
 
 
 
-
-<form action="{{url_for('friend_profile', friend_id=friend.id) }}" method = "post">
-
-<div class="container">
-  <h1>{{friend.fullname}} profile</h1>
-  {%if friend.about_myself!=None%}
-  <p>{{friend.about_myself}}</p>
-  {%endif%}
-  <form role="form">
-    <div class="form-group">
-      <label for="comment">Comment:</label>
-      <textarea class="form-control" rows="5" id="comment"></textarea>
+<div class="container-fluid">
+  <div  class="row">  
+    <div  class="col-md-12"> 
+      <h1>{{friend.fullname}} profile</h1>
     </div>
-  </form>
+  </div>
+
+
+  <div  class="row">  
+    <div  class="col-md-1"> 
+      <img src="" width="55" height="55">
+    </div>
+
+    <div  class="col-md-2"> 
+      <p>{{friend.about_myself}}</p>
+    </div>
+  </div>
 </div>
 
+<!-- images/pikabob.png -->
 
-<h1>{{friend.fullname}} profile</h1>
-
-<br>
-{%if friend.about_myself!=None%}
-<p>{{friend.about_myself}}</p>
-{%endif%}
-<br>
-<br>
-
-
-
-
+<form action="{{url_for('friend_profile', friend_id=friend.id) }}" method = "post">
 
 <input type = "submit" value="add friend" name="add_friend" id="add">
 <br>
@@ -100,9 +97,20 @@
 
 </form>
 
-<div id="button">
-</div>
 
+<!-- <ul id="comments">
+<li class="cmmnt">
+          <div class="avatar"><a href="javascript:void(0);"><img src="images/pikabob.png" width="55" height="55" alt="pikabob photo avatar"></a></div>
+          <div class="cmmnt-content">
+            <header><a href="javascript:void(0);" class="userlink">Pikabob</a> - <span class="pubdate">posted 6 days ago</span></header>
+            <p>Listen you are going to get a kick out of this one. I've got to tell one of the funniest jokes of all time.</a></p>
+          </div>
+        </li>
+
+
+
+
+  </ul>       -->
 
 </body>
 </html>

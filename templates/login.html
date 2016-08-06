@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -11,20 +13,32 @@
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 	<title>First Page</title>
 </head>
-<body>
+<body id ="log_in">
 
-<h5 align="center">FriendShip</h5>
-<h2 id ="headerone"><form action="{{url_for('log_in')}}" method="post" role="form">
-	<br>
-	<br>
-	<input type="text" name="email" placeholder="Email">
-	<br>
-	<br>
-	<input type="password" name="password" placeholder="Password">
-	<br>
-	<br>	
+
+<div class="container">
+<h5 align="center" id="logo" >FriendShip</h5>
+<form role="form" action="{{url_for('log_in')}}" method="post">
+<div class="row">
+<div class="col-md-6">
+    <div class="form-group questions">
+      <label for="user">Email:</label>
+      <input type="text" name="email" class="form-control" >
+    </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+    <div class="form-group questions">
+      <label for="user">Password:</label>
+      <input type="password" name="password" class="form-control" >
+    </div>
+</div>
+</div>
+
 	<a href="{{ url_for('sign_up') }}" value=Cancel>sign_up</a>
-	<input type="submit" value="Log In" >
+	<input type="submit" class="btn btn-info" value="Log In" >
 </form>
 </div>
 

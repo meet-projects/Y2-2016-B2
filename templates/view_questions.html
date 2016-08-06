@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-	<meta charset="utf-­‐8">
-
-
+	<meta charset="utf-8">
+<link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Answer Questions</title>
 	<!-- Latest compiled and minified CSS --> 
@@ -52,27 +52,44 @@
 
 
 <div class="container">
-<h2>-Simple Questions:</h2>
-{%for q in simple_questions%}
+
+<h2 class="head">Simple Questions:</h2>
 <form role="form">
-    <div class="form-group">
+{%for q in simple_questions%}
+
+<div class="row">
+<div class="col-md-6">
+    <div class="form-group questions">
       <label for="usr">{{q.text}}:</label>
       <input type="text" name="{{q.text}}" class="form-control" id="usr">
     </div>
-</form>
+</div>
+</div>
+
  {%endfor%}
+ 
 
 
 
-<h2>-Deep Questions:</h2>
+
+
+<h2 class="head">Deep Questions:</h2>
+
 {%for i in deep_questions%}
-<form role="form">
-    <div class="form-group">
+
+<div class="row">
+<div class="col-md-6">
+    <div class="form-group questions">
       <label for="usr">{{i.text}}:</label>
       <input type="text" name="{{i.text}}" class="form-control" id="usr">
     </div>
-</form>
+</div>
+</div>
+
  {%endfor%}
+ <input type="submit" value="Finish" >
+</form>
+
 
 
 

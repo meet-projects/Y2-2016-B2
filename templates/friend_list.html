@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-	<meta charset="utf-­‐8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">             
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<title></title>
 </head>
-<body class="rita">
+<body >
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -46,10 +46,10 @@
 
 
 
-	<h1>View My Friends</h1>
+
 	<form action="{{url_for('friend_list',friends = friends) }}" method = "post">
 	<div class="container">
- 
+  <h1>View My Friends</h1>
   <table class="table table-hover tables" >
 		<thead>
 			<th>Friend's Name</th>
