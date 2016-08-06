@@ -99,8 +99,12 @@ def suggest_friends():
 
 		for x in range(len(people)):
 			if counter_deep[x]>5 and counter_not_deep[x]>3:
-				suggested_friends.append(people[x])
-
+				alredy_friends=False
+				for friend in user.my_friends:
+					if friend.id==people[x].id:
+						alredy_friends=True
+				if alredy_friends==False:
+					suggested_friends.append(people[x])
 		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
 
 
@@ -185,9 +189,11 @@ def friend_profile(friend_id):
 				new_friend=session.query(User).filter_by(id=friend_id).first()
 				print(new_friend.fullname)
 				user.my_friends.append(new_friend)
+				new_friend.my_friends.append(user)
 				print("we made it!")
 
-				friend=session.query(User).filter_by(id=friend_id).first()
+				#friend=session.query(User).filter_by(id=friend_id).first()
+
 				session.commit()
 				
 				return render_template('friend_list.html',user=user)

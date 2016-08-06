@@ -62,6 +62,21 @@
 
 
 <form action="{{url_for('friend_profile', friend_id=friend.id) }}" method = "post">
+
+<div class="container">
+  <h1>{{friend.fullname}} profile</h1>
+  {%if friend.about_myself!=None%}
+  <p>{{friend.about_myself}}</p>
+  {%endif%}
+  <form role="form">
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+  </form>
+</div>
+
+
 <h1>{{friend.fullname}} profile</h1>
 
 <br>

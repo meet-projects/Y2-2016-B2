@@ -52,31 +52,33 @@
 
 
 <div class="container">
-<form action="{{url_for('view_questions')}}" method="post" role="form">
-<div class="row">
-<h1>Questions</h1>
-</div>
-<div class="row">
-<div class="col-md-6 questions">
 <h2>-Simple Questions:</h2>
 {%for q in simple_questions%}
-  <tr>
-    <p>{{q.text}}:</p><input type="text" name="{{q.text}}" placeholder="">
-    <br>
-  </tr>
-  {%endfor%}
-<h2 class="whitee">-Deep Questions</h2>
+<form role="form">
+    <div class="form-group">
+      <label for="usr">{{q.text}}:</label>
+      <input type="text" name="{{q.text}}" class="form-control" id="usr">
+    </div>
+</form>
+ {%endfor%}
 
-<div class="col-md-6 questions">
+
+
+<h2>-Deep Questions:</h2>
 {%for i in deep_questions%}
-  <tr>
-    <p>{{i.text}}:<input type="text" name="{{i.text}}" placeholder="">
-    <br>
-  </tr>
-  {%endfor%}
-</div>
-</div>
-<input type="submit" value="Finish">
+<form role="form">
+    <div class="form-group">
+      <label for="usr">{{i.text}}:</label>
+      <input type="text" name="{{i.text}}" class="form-control" id="usr">
+    </div>
+</form>
+ {%endfor%}
+
+
+
+
+
+
 
 
 </div>
