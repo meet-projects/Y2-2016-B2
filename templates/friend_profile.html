@@ -63,10 +63,11 @@
 
 <form action="{{url_for('friend_profile', friend_id=friend.id) }}" method = "post">
 <h1>{{friend.fullname}} profile</h1>
+
 <br>
-<br>
-About Friend
+{%if friend.about_myself!=None%}
 <p>{{friend.about_myself}}</p>
+{%endif%}
 <br>
 <br>
 

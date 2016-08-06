@@ -107,15 +107,7 @@ def suggest_friends():
 
 	else:
 		return redirect(url_for("log_in"))
-	# '''
-	# user=session.query(User).filter_by(id=user_id).first()
-	# suggests=session.query(User).all()
-	# for i in suggests:
-	# 	if user.id!=i.id:
-	# 		for
-
-	# return render_template('suggest_friends.html', user=user)
-	# '''
+	
 @app.route('/profile/', methods=['GET','POST'])
 def user_profile():
 	if 'user_email' in flask_session:
