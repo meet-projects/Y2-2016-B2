@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">             
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<title></title>
+  <!-- jansweruery library --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jansweruery/1.12.4/jansweruery.min.js"></script>
+
+  <!-- Latest compiled JavaScript --> 
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
 </head>
 <body >
 
@@ -49,8 +54,8 @@
 
 	<form action="{{url_for('friend_list',friends = friends) }}" method = "post">
 	<div class="container">
-  <h1>View My Friends</h1>
-  <table class="table table-hover tables" >
+  <h1 class="head">View My Friends</h1>
+  <table class="table table-hover questions" >
 		<thead>
 			<th>Friend's Name</th>
 			<th></th>

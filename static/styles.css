@@ -4,15 +4,17 @@ body{
 	background-size: 100%;
     background-repeat: no-repeat;
 }
-#
-}
+
+
 h5{
 	font: 400 130px/0.8 'Cookie', Helvetica, sans-serif;
 	text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 	font-size:225px;
 	
 }
-
+#create{
+	color:#B98EA7;
+}
 #logo{
 	font-family: 'Pacifico', cursive;
 	color:#028090;
@@ -27,6 +29,7 @@ h5{
 }
 h2{
 	font-color:black;
+
 }
 .whitee {
 	color:white;
@@ -86,7 +89,10 @@ h2{
 	color:#028090;
 	font-size: 16px;
 	font-family: 'Noto Sans', sans-serif;
-
+}
+#signup{
+	background-color:#028090;
+}
 
 
 }
