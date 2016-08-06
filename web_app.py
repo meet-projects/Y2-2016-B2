@@ -73,57 +73,34 @@ def suggest_friends():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
 
-	# 	my_users=session.query(User).all()
-	# 	suggested_friends=set()
-	# 	my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
-	# 	my_simple_questions=[]
-	# 	my_deep_questions=[]
+	
 
-	# 	for i in my_questions:
-	# 		chack_if_deep=session.query(Questions).filter_by(id=i.question_id).first()
-	# 		if chack_if_deep.deep == True:
-	# 			my_deep_questions.append(chack_if_deep)
-	# 		else:
-	# 			my_simple_questions.append(chack_if_deep)
-
-	# 	for simple in my_simple_questions:
-	# 		friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
-	# 		for friend in friend_answers:
-	# 			if user.id!=friend.user_id:
-	# 				user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=simple.id).first()
-
-	# 				if  user_answer.user_response!=friend.user_response:
-
-	# 					suggested_friends.add(friend.user)
-
-	# 	for deep  in my_deep_questions:
-	# 		friend_answers=session.query(User_questions).filter_by(question_id=simple.id).all()
-	# 		for friend in friend_answers:
-	# 			if user.id!=friend.user_id:
-
-	# 				user_answer=session.query(User_questions).filter_by(user_id=user.id,question_id=deep.id).first()
-
-	# 				if  friend.user_response!=user_answer.user_response:
-	# 					suggested_friends.remove(i)
-	# 	print("asdfghjk")
-
-	# 	return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
-		my_peuples=session.query(User).all()
-		suggested_friends=[]
-		# for peuple in my_peuples:
-		# 	suggested_friends.append(peuple)
 		my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
+		people=session.query(User).all()
+		counter_deep=[]
+		counter_not_deep=[]
+		for i in people:
+			counter_deep.append(0)
+			counter_not_deep.append(0)
+		suggested_friends=[]
+
 		for i in range(len(my_questions)):
-			print("WE ARE HEREEEEEEEE")
-			for peuple in my_peuples:
-				if user.id!=peuple.id:
-					my_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=user.id).first()
-					friend_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=peuple.id).first()
-					if my_answer.user_response!=" ":
-						if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==True:
-							#suggested_friends.append(peuple)
-							if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==False:
-								suggested_friends.append(peuple)
+			for j in range(len(people)):
+				if user.id!=people[j].id:
+					my_answer=session.query(User_questions).filter_by(id=my_questions[i].id).first()
+					friend_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=people[j].id).first()
+					if my_answer.user_response!=" " and friend_answer.user_response!=" ":
+
+						if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==False:
+							counter_not_deep[j]+=1
+						if my_answer.user_response==friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==True:
+							counter_deep[j]+=1
+
+
+		for x in range(len(people)):
+			if counter_deep[x]>5 and counter_not_deep[x]>3:
+				suggested_friends.append(people[x])
+
 		return render_template('suggest_friends.html',user=user,suggested_friends =suggested_friends )
 
 

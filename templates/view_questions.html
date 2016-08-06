@@ -61,7 +61,7 @@
 <h2>-Simple Questions:</h2>
 {%for q in simple_questions%}
   <tr>
-    <p>{{q.text}}:</p><input type="text" value=" " name="{{q.text}}" placeholder="">
+    <p>{{q.text}}:</p><input type="text" name="{{q.text}}" placeholder="">
     <br>
   </tr>
   {%endfor%}
@@ -70,7 +70,7 @@
 <div class="col-md-6 questions">
 {%for i in deep_questions%}
   <tr>
-    <input type="text" name="{{i.text}}" value=" " placeholder="{{i.text}}">
+    <p>{{i.text}}:<input type="text" name="{{i.text}}" placeholder="">
     <br>
   </tr>
   {%endfor%}
