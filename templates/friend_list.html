@@ -64,6 +64,8 @@
   		<tr> 
       		<td>{{friend.fullname}}</td>
       		<td><a href ="{{ url_for('friend_profile' ,friend_id = friend.id) }}" class="btn btn-info" role="button">View</a></td>
+		<td><a href = "http://facebook.com" class="btn btn-info" role="button">Go to {{friend.fullname}}'s facebook page to start your friendship!</a></td>
+		<td><a href = "https://plus.google.com/" class="btn btn-info" role="button">Go to {{friend.fullname}}'s google + page to start your friendship!</a></td>
   		</tr>
 		{% endfor %}
 	</form>
