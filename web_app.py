@@ -49,7 +49,8 @@ def sign_up():
 		user_name = request.form['name']
 		user_email=request.form['email']
 		user_password=request.form['password']
-		new_user = User(fullname = user_name, email= user_email, password=user_password)
+		about=request.form['about']
+		new_user = User(fullname = user_name, email= user_email, password=user_password, about_myself=about)
 		print(new_user.fullname)
 		session.add(new_user)
 		session.commit()
