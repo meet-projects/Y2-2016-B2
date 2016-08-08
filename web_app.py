@@ -39,7 +39,7 @@ def log_in():
 			flask_session['user_email'] = user_email
 			return redirect(url_for('suggest_friends', user_id=user.id))
 		else:
-			return render_template('login.html')
+			return render_template('index.html')
 
 
 
@@ -102,7 +102,7 @@ def suggest_friends():
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
 
 	
-
+		print ("===========================================================")
 		my_questions= session.query(User_questions).filter_by(user_id=user.id).all()
 		people=session.query(User).all()
 		counter_deep=[]
@@ -150,19 +150,17 @@ def suggest_friends():
 	else:
 		return redirect(url_for("log_in"))
 	
-@app.route('/profile/', methods=['GET','POST'])
+@app.route('/profile/' , methods=['GET','POST'])
 def user_profile():
 	if 'user_email' in flask_session:
 		user = session.query(User).filter_by(email = flask_session['user_email']).first()
 		if request.method == 'GET':
-			
 			return render_template('user_profile.html',user=user)
 		else:
 			about=request.form['about']
 			print (about)
 			user.about_myself=about
-			return render_template('user_profile.html',user=user)
-
+			return render_template('user_profile.html' ,user=user)
 	else:
 		return redirect(url_for("log_in"))
 
