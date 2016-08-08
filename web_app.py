@@ -86,12 +86,13 @@ def edit():
 		new_name = request.form['name']
 		new_password = request.form['password']
 		new_photo = request.form['photo']
-		new_emailadress = request.form['emailadress']
+		new_emailadress = request.form['email']
 		user.name = new_name
-		user.emailadress = new_emailadress
+		user.email = new_emailadress
 		user.password = new_password
 		user.photo = new_photo
 		session.commit()
+		return redirect(url_for("user_profile"))
    return redirect(url_for('log_in'))
 
 
@@ -297,4 +298,4 @@ def uploaded_file(filename):
 app.secret_key = 'u4yeoiuoxzic uoxzayw23'
 if __name__ == '__main__':
     app.run(debug=True)
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    

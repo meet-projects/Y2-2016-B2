@@ -2,100 +2,108 @@
 <html lang="en">
 
 <head>
-  
-	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">                 
-  
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
+    <title>Freelancer - Start Bootstrap Theme</title>
 
+    <!-- Bootstrap Core CSS -->
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="{{url_for('static', filename='css/freelancer.min.css')}}" rel="stylesheet"">
+
+    <!-- Custom Fonts -->
+    <link href="{{url_for('static', filename='css/freelancer.min.css')}}" rel="stylesheet"" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="{{url_for('static', filename='styles.css')}}" type = text/css rel="stylesheet">
 </head>
 
+<body id="page-top" class="index">
 
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('suggest_friends')  }}">Friendship</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{{ url_for('friend_list')  }}">My friends</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{{ url_for('user_profile') }}">My profile</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{ url_for('view_questions') }}">Question</a>
+                    </li>
+	
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <div class="intro-text">
+			<span class="name">{{user.fullname}}</span>
+			<img class="img-responsive" class = "img-circle" src= {{user.photo}} width = "200" height="200" alt="">
+                
+                        <hr class="star-light">
+                        <span class="skills"> <label for="comment">About Myself:</label>
+      <textarea class="form-control" rows="7" name = "about" id="comment">{{user.about_myself}}</textarea>
+      <input type="submit" class="btn btn-info" value = "save"  id = "blacksubmit"></span>
+      <br>
+      <a href ="{{ url_for('edit') }}" class="btn btn-info" role="button">Edit info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<body class="body">
+   
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ url_for('suggest_friends') }}" class="btn btn-info" role="button">FRIENDSHIP &nbsp;&nbsp;&nbsp;|</a>
-    </div>
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="{{ url_for('friend_list')  }}" role="button">My Friends &nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href ="{{ url_for('user_profile') }}" role="button">My Profile &nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="{{ url_for('view_questions') }}" role="button">Question &nbsp;&nbsp;&nbsp;|</a></li>
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
 
-        
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('logout') }}" role="button" type="sumbit">Logout</a></li>
-        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-
-<div class="container">
-
-<h1> {{ user.fullname }} profile </h1>
-<br>
-<br>
-
-<img src= {{user.photo}} width = "200" height="200">
-
-
-
-
-
-
-
-
-<form action = "{{url_for('user_profile') }}" method = "post">
-
-
-  
-  
-  
-    <div class="form-group">
-    <div class="row">
-    <div class="col-md-6 textbox">
-      <label for="comment">About Myself:</label>
-      <textarea class="form-control" rows="5" name = "about" id="comment">{{user.about_myself}}</textarea>
-      <input type="submit" class="btn btn-info" value = "save"  id = "blacksubmit">
-    </div>
-  </div>
-  </div>
-</div>
-
-
-</form>
-<a href ="{{ url_for('edit') }}" class="btn btn-info" role="button">Edit info</a>
-<br>
-<br>
-
-
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
 
 </body>
 
