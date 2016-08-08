@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<DOCTYPE! html>
 <html lang="en">
-
 <head>
-  
+ 
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">                 
   
@@ -15,15 +14,8 @@
   <!-- Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles.css') }}">
-
 </head>
-
-
-
-
-<body class="body">
-
-
+<body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -55,48 +47,19 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-
-
-<div class="container">
-
-<h1> {{ user.fullname }} profile </h1>
-<br>
-<br>
-
-<img src= {{user.photo}} width = "200" height="200">
-
-
-
-
-
-
-
-
-<form action = "{{url_for('user_profile') }}" method = "post">
-
-
-  
-  
-  
-    <div class="form-group">
-    <div class="row">
-    <div class="col-md-6 textbox">
-      <label for="comment">About Myself:</label>
-      <textarea class="form-control" rows="5" name = "about" id="comment">{{user.about_myself}}</textarea>
-      <input type="submit" class="btn btn-info" value = "save"  id = "blacksubmit">
-    </div>
-  </div>
-  </div>
-</div>
-
-
+<div class = "container">
+<form action="{{ url_for('edit') }}" method="post">
+	<label>Edit Name: </label>
+	<input type="text" name="name" value="{{ fullname}}">
+	<label>Edit email address: </label>
+	<input type = "text" name = "email" value = "{{email}}">
+	<label>Edit password: </label>
+	<input type = "password" name="password" value="{{password}}">
+	<label>Edit Photo: </label>
+	<input type = "text" name="photo" value="{{photo}}">
+	<input type="submit" value="Submit">
 </form>
-<a href ="{{ url_for('edit') }}" class="btn btn-info" role="button">Edit info</a>
-<br>
-<br>
-
-
-
+</div>
 </body>
 
 </html>

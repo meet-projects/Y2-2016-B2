@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect,  send_from_directory
 from flask import session as flask_session
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -50,7 +52,8 @@ def sign_up():
 		user_email=request.form['email']
 		user_password=request.form['password']
 		about=request.form['about']
-		new_user = User(fullname = user_name, email= user_email, password=user_password, about_myself=about)
+		photo = request.form ['photo']
+		new_user = User(fullname = user_name, email= user_email, password=user_password, about_myself=about,photo = photo)
 		print(new_user.fullname)
 		session.add(new_user)
 		session.commit()
@@ -59,7 +62,7 @@ def sign_up():
 			a= User_questions(
 					user_id=new_user.id,
 					question_id=i.id,
-					user_response=" "
+					user_response=""
 					)
 			session.add(a)
 
@@ -67,6 +70,23 @@ def sign_up():
 		flask_session['user_email'] = user_email
 		return redirect(url_for('view_questions'))
 
+@app.route('/edit', methods = ['GET','POST'])
+def edit():
+   if 'user_email' in flask_session:
+	user = session.query(User).filter_by(email = flask_session['user_email']).first()
+    	if request.method == 'GET':
+        	return render_template("edit.html")
+        else:
+		new_name = request.form['name']
+		new_password = request.form['password']
+		new_photo = request.form['photo']
+		new_emailadress = request.form['emailadress']
+		user.name = new_name
+		user.emailadress = new_emailadress
+		user.password = new_password
+		user.photo = new_photo
+		session.commit()
+   return redirect(url_for('log_in'))
 
 
 @app.route('/suggest/')
@@ -84,22 +104,32 @@ def suggest_friends():
 			counter_deep.append(0)
 			counter_not_deep.append(0)
 		suggested_friends=[]
-
+		print (counter_not_deep)
 		for i in range(len(my_questions)):
 			for j in range(len(people)):
 				if user.id!=people[j].id:
 					my_answer=session.query(User_questions).filter_by(id=my_questions[i].id).first()
 					friend_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=people[j].id).first()
-					if my_answer.user_response!=" " and friend_answer.user_response!=" ":
+					if my_answer.user_response!="" and friend_answer.user_response!="":
 
 						if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==False:
 							counter_not_deep[j]+=1
+
+							print(people[j].fullname)
+							print (user.fullname)
+							print (my_answer.user_response)
+							print(friend_answer.user_response)
+							print (counter_not_deep)
 						if my_answer.user_response==friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==True:
 							counter_deep[j]+=1
-
+							print (my_answer.user_response)
+							print(friend_answer.user_response)
+							print(counter_deep)
 
 		for x in range(len(people)):
-			if counter_deep[x]>5 and counter_not_deep[x]>3:
+			if counter_deep[x]>=5 and counter_not_deep[x]>=3:
+				print(counter_deep[x])
+				print(counter_not_deep[x])
 				alredy_friends=False
 				for friend in user.my_friends:
 					if friend.id==people[x].id:
@@ -146,9 +176,8 @@ def view_questions():
 
 				
 				answer = request.form[q.text]
-				print(answer)
-				print('we are here')
-				if answer!=" ":
+				
+				if answer!="":
 					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
 					question.user_response=answer
 				
@@ -156,7 +185,7 @@ def view_questions():
 
 
 				answer = request.form[q.text]
-				if answer!=" ":
+				if answer!="":
 					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
 					question.user_response=answer
 
@@ -209,6 +238,38 @@ def logout():
     # remove the username from the session if it's there
     flask_session.pop('username', None)
     return redirect(url_for('log_in'))
+'''
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+@app.route('/upload',methods=['GET', 'POST'])
+def upload():
+   if request.method == 'POST':
+        
+   	if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+   file = request.files['file']
+   if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+   if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+
+   	
+   UPLOAD_FOLDER = '/path/to/the/uploads'
+   ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
+
+'''
+
 
 #@app.route('/delete_account', methods=['GET','POST'])
 #def delete_account():
@@ -230,3 +291,4 @@ def logout():
 app.secret_key = 'u4yeoiuoxzic uoxzayw23'
 if __name__ == '__main__':
     app.run(debug=True)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
