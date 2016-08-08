@@ -53,22 +53,27 @@ def sign_up():
 		user_password=request.form['password']
 		about=request.form['about']
 		photo = request.form ['photo']
-		new_user = User(fullname = user_name, email= user_email, password=user_password, about_myself=about,photo = photo)
-		print(new_user.fullname)
-		session.add(new_user)
-		session.commit()
-		all_questions=session.query(Questions).all()
-		for i in all_questions:
-			a= User_questions(
-					user_id=new_user.id,
-					question_id=i.id,
-					user_response=""
-					)
-			session.add(a)
+		confirm_password=request.form['confirm_password']
+		if confirm_password==user_password:
+			new_user = User(fullname = user_name, email= user_email, password=user_password, about_myself=about,photo = photo)
+			print(new_user.fullname)
+			session.add(new_user)
+			session.commit()
+			all_questions=session.query(Questions).all()
+			for i in all_questions:
+				a= User_questions(
+						user_id=new_user.id,
+						question_id=i.id,
+						user_response=""
+						)
+				session.add(a)
 
-		session.commit()
-		flask_session['user_email'] = user_email
-		return redirect(url_for('view_questions'))
+			session.commit()
+			flask_session['user_email'] = user_email
+			return redirect(url_for('view_questions'))
+		else:
+			return redirect(url_for('sign_up'))
+
 
 @app.route('/edit', methods = ['GET','POST'])
 def edit():
