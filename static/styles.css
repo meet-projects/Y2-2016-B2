@@ -1,8 +1,12 @@
 .body{
 	background-color: #DDFDFE;
-	font-family:garamond;*/
+	font-family:garamond;
 	background-size: 100%;
-    background-repeat: no-repeat;
+        background-repeat: no-repeat;
+}
+
+#username {
+	font-family:"Arial Black";
 }
 
 
@@ -79,6 +83,9 @@ h2{
 #sky {
 	background-image:url('sky.jpg');
 	color:white;
+}
+#blue {
+	background-image:url('blue.jpg');
 }
 
 #createfont{
