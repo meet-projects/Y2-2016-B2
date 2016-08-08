@@ -27,7 +27,7 @@ session = DBSession()
 @app.route('/', methods=['GET','POST'])
 def log_in():
 	if request.method == 'GET':
-		return render_template('login.html')
+		return render_template('index.html')
 	else:
 		user_email=request.form['email']
 		user_password=request.form['password']
@@ -46,8 +46,9 @@ def log_in():
 @app.route('/signup', methods=['GET','POST'])
 def sign_up():
 	if request.method == 'GET':
-		return render_template('signup.html')
+		return render_template('index.html')
 	else:
+		print(request.form)
 		user_name = request.form['name']
 		user_email=request.form['email']
 		user_password=request.form['password']
