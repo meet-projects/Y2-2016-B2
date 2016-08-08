@@ -59,7 +59,7 @@ def sign_up():
 			a= User_questions(
 					user_id=new_user.id,
 					question_id=i.id,
-					user_response=" "
+					user_response=""
 					)
 			session.add(a)
 
@@ -84,22 +84,32 @@ def suggest_friends():
 			counter_deep.append(0)
 			counter_not_deep.append(0)
 		suggested_friends=[]
-
+		print (counter_not_deep)
 		for i in range(len(my_questions)):
 			for j in range(len(people)):
 				if user.id!=people[j].id:
 					my_answer=session.query(User_questions).filter_by(id=my_questions[i].id).first()
 					friend_answer=session.query(User_questions).filter_by(question_id=my_questions[i].question_id,user_id=people[j].id).first()
-					if my_answer.user_response!=" " and friend_answer.user_response!=" ":
+					if my_answer.user_response!="" and friend_answer.user_response!="":
 
 						if my_answer.user_response!=friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==False:
 							counter_not_deep[j]+=1
+
+							print(people[j].fullname)
+							print (user.fullname)
+							print (my_answer.user_response)
+							print(friend_answer.user_response)
+							print (counter_not_deep)
 						if my_answer.user_response==friend_answer.user_response and session.query(Questions).filter_by(id=my_answer.question_id).first().deep==True:
 							counter_deep[j]+=1
-
+							print (my_answer.user_response)
+							print(friend_answer.user_response)
+							print(counter_deep)
 
 		for x in range(len(people)):
-			if counter_deep[x]>5 and counter_not_deep[x]>3:
+			if counter_deep[x]>=5 and counter_not_deep[x]>=3:
+				print(counter_deep[x])
+				print(counter_not_deep[x])
 				alredy_friends=False
 				for friend in user.my_friends:
 					if friend.id==people[x].id:
@@ -146,9 +156,8 @@ def view_questions():
 
 				
 				answer = request.form[q.text]
-				print(answer)
-				print('we are here')
-				if answer!=" ":
+				
+				if answer!="":
 					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
 					question.user_response=answer
 				
@@ -156,7 +165,7 @@ def view_questions():
 
 
 				answer = request.form[q.text]
-				if answer!=" ":
+				if answer!="":
 					question=session.query(User_questions).filter_by(question_id=q.id, user_id=user.id).first()
 					question.user_response=answer
 
