@@ -12,13 +12,13 @@
     <title>Freelancer - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="{{url_for('static', filename='css/freelancer.min.css')}}" rel="stylesheet"">
+    <link href="css/freelancer.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{url_for('static', filename='css/freelancer.min.css')}}" rel="stylesheet"" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -28,7 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="{{url_for('static', filename='styles.css')}}" type = text/css rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="index">
@@ -58,7 +58,6 @@
                     <li class="page-scroll">
                         <a href="{ url_for('view_questions') }}">Question</a>
                     </li>
-	
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -75,10 +74,10 @@
                     <div class="intro-text">
 			<span class="name">{{user.fullname}}</span>
 			<img class="img-responsive" class = "img-circle" src= {{user.photo}} width = "200" height="200" alt="">
-                
+                        
                         <hr class="star-light">
                         <span class="skills"> <label for="comment">About Myself:</label>
-      <textarea class="form-control" rows="7" name = "about" id="comment">{{user.about_myself}}</textarea>
+      <textarea class="form-control" rows="5" name = "about" id="comment">{{user.about_myself}}</textarea>
       <input type="submit" class="btn btn-info" value = "save"  id = "blacksubmit"></span>
       <br>
       <a href ="{{ url_for('edit') }}" class="btn btn-info" role="button">Edit info</a>

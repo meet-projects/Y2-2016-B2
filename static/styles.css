@@ -166,6 +166,9 @@ body{
   transition: all 0.4s linear;
 }
 
+
+
+
 #comments .cmmnt .avatar a:hover img { opacity: 0.77; }
 
 #comments .cmmnt .cmmnt-content { padding: 0px 3px; padding-bottom: 12px; padding-top: 8px; }
