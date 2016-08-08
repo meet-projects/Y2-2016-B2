@@ -17,6 +17,7 @@ Tehila.fullname="Tehila Pelled"
 Tehila.email="tehilapelled16@gmail.com"
 Tehila.password="password"
 Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming and i am 16 years old."
+Tehila.photo = "https://www.colourbox.com/preview/8103563-cute-girl-cartoon.jpg"
 
 			 
 
@@ -26,9 +27,9 @@ Tehila.about_myself = "Hi my name is Tehila and I like scuba diving, programming
 Amos = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
-  			  about_myself = "Hi I am Amos"
-
-			  )
+  			  about_myself = "Hi I am Amos",
+			  photo = "https://www.colourbox.com/preview/8103563-cute-girl-cartoon.jpg" 
+	)
 Amos2 = User(fullname="Amos Ro ", 
 			  email="amosamos@gmail.com", 
 			  password="password",
@@ -56,7 +57,6 @@ for i in deep_q:
 '''
 session.add(Tehila)
 session.add(Amos)
-'''
 #Amos.my_friends.append(Tehila)
 
 session.commit()
